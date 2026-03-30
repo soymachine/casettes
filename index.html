@@ -143,50 +143,63 @@
     .shelf-row {
       display: flex;
       justify-content: center;
-      gap: 4px;
-      padding: 10px 8px 6px;
+      gap: 2px;
+      padding: 18px 8px 8px;
       background: linear-gradient(180deg,
-        rgba(0,0,0,0.22) 0%,
-        rgba(0,0,0,0.06) 45%,
-        rgba(0,0,0,0.3) 100%);
-      border-bottom: 3px solid #0a0503;
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.08) 30%,
+        rgba(0,0,0,0.12) 100%);
+      border-bottom: 4px solid #08030100;
       border-radius: 2px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.025),
-        0 3px 6px rgba(0,0,0,0.5);
+        inset 0 -4px 0 #0a0503,
+        inset 0 -7px 0 #1c0e06,
+        inset 0 1px 4px rgba(0,0,0,0.6),
+        0 4px 10px rgba(0,0,0,0.6);
       position: relative;
     }
+    /* Shelf board edge */
     .shelf-row::after {
       content: '';
       position: absolute;
-      bottom: -6px; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #100601, #2c1208, #100601);
+      bottom: -10px; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(180deg, #2c1208, #1a0a04);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.6);
     }
     .shelf-row:last-child { margin-bottom: 0; }
 
     /* ============ CASSETTE SPINE ============ */
     .cassette-spine {
-      width: 30px;
-      height: 98px;
+      width: 14px;
+      height: 130px;
       flex-shrink: 0;
-      border-radius: 2px 2px 1px 1px;
-      cursor: grab;
+      border-radius: 1px 1px 0 0;
+      cursor: pointer;
       position: relative;
       overflow: hidden;
-      transition: transform 0.14s ease, filter 0.14s ease, box-shadow 0.14s ease;
+      transition: transform 0.18s cubic-bezier(0.22,1,0.36,1), filter 0.14s ease, box-shadow 0.14s ease;
       user-select: none;
     }
+    /* Category colour stripe — left edge */
+    .cassette-spine::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--dot, transparent);
+      opacity: 0.75;
+      z-index: 2;
+    }
     .cassette-spine:hover {
-      transform: translateY(-7px) scaleY(1.015);
-      filter: brightness(1.18);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.7), 0 0 8px rgba(212,120,42,0.15);
+      transform: translateY(-12px);
+      filter: brightness(1.22);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.8), 0 0 10px rgba(212,120,42,0.2);
       z-index: 10;
     }
-    .cassette-spine:active { cursor: grabbing; }
-    .cassette-spine.dragging { opacity: 0.25; transform: translateY(-3px); }
-    .cassette-spine.in-player { opacity: 0.12; pointer-events: none; cursor: default; }
+    .cassette-spine:active { filter: brightness(1.05); }
+    .cassette-spine.in-player { opacity: 0.1; pointer-events: none; cursor: default; }
 
     /* Spine content layout */
     .spine-inner {
@@ -195,43 +208,43 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 6px 3px 5px;
-      gap: 3px;
-    }
-    .spine-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.28);
+      padding: 7px 2px 4px;
+      gap: 0;
     }
     .spine-label {
       font-family: 'Josefin Slab', serif;
-      font-size: 7.5px;
+      font-size: 6.5px;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.48);
       writing-mode: vertical-rl;
       overflow: hidden;
       flex: 1;
       white-space: nowrap;
-      line-height: 30px;
+      line-height: 8px;
+      margin-top: 3px;
     }
     .spine-num {
       font-family: 'VT323', monospace;
-      font-size: 11px;
-      color: rgba(255,255,255,0.35);
+      font-size: 9px;
+      color: rgba(255,255,255,0.28);
       line-height: 1;
       writing-mode: vertical-rl;
+      margin-top: 2px;
     }
-    /* Gloss sheen */
+    /* Gloss sheen — right highlight */
     .cassette-spine::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(270deg, rgba(255,255,255,0.07) 0%, transparent 35%, rgba(0,0,0,0.12) 100%);
+      background: linear-gradient(90deg,
+        rgba(0,0,0,0.18) 0%,
+        transparent 40%,
+        rgba(255,255,255,0.06) 70%,
+        rgba(255,255,255,0.11) 100%);
       pointer-events: none;
+      z-index: 1;
     }
 
     /* Category backgrounds */
@@ -747,20 +760,11 @@
       animation: ccPop 0.44s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
       pointer-events: all;
     }
-    .cassette-card.cc-hide {
-      animation: ccRetract 0.22s ease-in forwards;
-      pointer-events: none;
-    }
-    .cassette-card.cc-dragging { cursor: grabbing; opacity: 0.6 !important; }
 
     @keyframes ccPop {
       0%   { transform: translate(-50%, -50%) scale(0.15) rotateY(-80deg); opacity: 0; }
       30%  { opacity: 1; }
-      100% { transform: translate(-50%, calc(-50% - 100px)) scale(1) rotateY(0deg); opacity: 1; }
-    }
-    @keyframes ccRetract {
-      0%   { transform: translate(-50%, calc(-50% - 100px)) scale(1) rotateY(0deg); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(0.15) rotateY(80deg); opacity: 0; }
+      100% { transform: translate(-50%, calc(-50% - 110px)) scale(1) rotateY(0deg); opacity: 1; }
     }
 
     .cc-body {
@@ -1190,6 +1194,8 @@ let draggingId = null;
 let extractedCard  = null;
 let extractedSpine = null;
 let extractedId    = null;
+let cardDrag       = null;   // active custom-drag session
+let justDragged    = false;  // prevents body-click from retracting right after drop
 
 // ============================================================
 //  CASSETTE CARD HELPERS
@@ -1243,22 +1249,8 @@ function extractCassette(c, spineEl) {
   card.style.left = `${rect.left + rect.width / 2}px`;
   card.style.top  = `${rect.top  + rect.height / 2}px`;
 
-  // Drag to player
-  card.addEventListener('dragstart', e => {
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', String(c.id));
-    card.classList.add('cc-dragging');
-    // Use a transparent 1x1 drag image so the card itself doesn't ghost
-    const img = new Image(); img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-    e.dataTransfer.setDragImage(img, 0, 0);
-  });
-  card.addEventListener('dragend', () => card.classList.remove('cc-dragging'));
-
-  // Click on card = load it now
-  card.addEventListener('click', e => {
-    e.stopPropagation();
-    loadCassette(c.id);
-  });
+  // Prevent body-click dismissal from bubbling through the card
+  card.addEventListener('click', e => e.stopPropagation());
 
   document.body.appendChild(card);
   extractedCard  = card;
@@ -1267,8 +1259,46 @@ function extractCassette(c, spineEl) {
 
   spineEl.classList.add('spine-extracting');
 
-  // Trigger pop animation on next frame
-  requestAnimationFrame(() => card.classList.add('cc-show'));
+  // Pop animation — then settle card to its real viewport position so drag works correctly
+  requestAnimationFrame(() => {
+    card.classList.add('cc-show');
+    card.addEventListener('animationend', () => {
+      // Grab actual rendered position before removing the animation
+      const r = card.getBoundingClientRect();
+      card.classList.remove('cc-show');
+      card.style.left      = `${r.left + r.width  / 2}px`;
+      card.style.top       = `${r.top  + r.height / 2}px`;
+      card.style.transform = 'translate(-50%, -50%)';
+      card.style.opacity   = '1';
+      attachCardDrag(card, c.id);
+    }, { once: true });
+  });
+}
+
+function attachCardDrag(card, id) {
+  function startDrag(cx, cy) {
+    const r = card.getBoundingClientRect();
+    cardDrag = { card, id,
+      ox: cx - (r.left + r.width  / 2),
+      oy: cy - (r.top  + r.height / 2),
+    };
+    card.style.transition  = 'none';
+    card.style.transform   = 'translate(-50%, -50%) rotate(4deg) scale(1.07)';
+    card.style.filter      = 'drop-shadow(0 22px 40px rgba(0,0,0,0.9))';
+    card.style.zIndex      = '3000';
+    document.body.style.userSelect = 'none';
+  }
+
+  card.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    e.preventDefault(); e.stopPropagation();
+    startDrag(e.clientX, e.clientY);
+  });
+
+  card.addEventListener('touchstart', e => {
+    e.preventDefault(); e.stopPropagation();
+    startDrag(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: false });
 }
 
 function retractCassette(instant = false) {
@@ -1276,19 +1306,22 @@ function retractCassette(instant = false) {
   const card  = extractedCard;
   const spine = extractedSpine;
 
+  cardDrag = null;
   extractedCard  = null;
   extractedSpine = null;
   extractedId    = null;
 
   if (spine) spine.classList.remove('spine-extracting');
+  document.body.style.userSelect = '';
 
-  if (instant) {
-    card.remove();
-    return;
-  }
-  card.classList.remove('cc-show');
-  card.classList.add('cc-hide');
-  card.addEventListener('animationend', () => card.remove(), { once: true });
+  if (instant) { card.remove(); return; }
+
+  card.style.transition = 'transform 0.22s ease-in, opacity 0.16s ease-in';
+  requestAnimationFrame(() => {
+    card.style.transform = 'translate(-50%, -50%) scale(0.06) rotateY(70deg)';
+    card.style.opacity   = '0';
+  });
+  setTimeout(() => card.remove(), 240);
 }
 
 function consumeCard() {
@@ -1296,21 +1329,72 @@ function consumeCard() {
   const card  = extractedCard;
   const spine = extractedSpine;
 
+  cardDrag = null;
   extractedCard  = null;
   extractedSpine = null;
   extractedId    = null;
 
   if (spine) spine.classList.remove('spine-extracting');
+  document.body.style.userSelect = '';
 
-  // Slide card down into player and fade out
-  card.style.transition = 'transform 0.3s ease-in, opacity 0.25s 0.1s ease-in';
-  card.style.transform  = 'translate(-50%, calc(-50% + 60px)) scale(0.5) rotateY(20deg)';
-  card.style.opacity    = '0';
-  setTimeout(() => card.remove(), 380);
+  // Shrink and sink into the player slot
+  card.style.transition = 'transform 0.28s ease-in, opacity 0.22s 0.06s ease-in';
+  requestAnimationFrame(() => {
+    card.style.transform = 'translate(-50%, calc(-50% + 70px)) scale(0.35) rotateX(15deg)';
+    card.style.opacity   = '0';
+  });
+  setTimeout(() => card.remove(), 340);
 }
 
-// Dismiss card when clicking outside it
-document.addEventListener('click', () => retractCassette());
+// ============================================================
+//  GLOBAL CARD DRAG  (mouse + touch)
+// ============================================================
+function moveDrag(cx, cy) {
+  if (!cardDrag) return;
+  cardDrag.card.style.left = `${cx - cardDrag.ox}px`;
+  cardDrag.card.style.top  = `${cy - cardDrag.oy}px`;
+}
+
+function endDrag(cx, cy) {
+  if (!cardDrag) return;
+  const { card, id } = cardDrag;
+  cardDrag = null;
+  justDragged = true;
+  setTimeout(() => { justDragged = false; }, 80);
+
+  document.body.style.userSelect = '';
+  card.style.zIndex     = '2000';
+  card.style.transition = 'transform 0.18s ease, filter 0.18s ease';
+  card.style.transform  = 'translate(-50%, -50%) rotate(0deg) scale(1)';
+  card.style.filter     = 'drop-shadow(0 16px 32px rgba(0,0,0,0.8))';
+
+  // Check if dropped over the cassette window
+  const win     = document.getElementById('cassetteWindow');
+  const winRect = win.getBoundingClientRect();
+  if (cx >= winRect.left && cx <= winRect.right &&
+      cy >= winRect.top  && cy <= winRect.bottom) {
+    loadCassette(id);
+  }
+  // Otherwise card stays floating — user can try again or click away
+}
+
+document.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
+document.addEventListener('mouseup',   e => endDrag(e.clientX, e.clientY));
+document.addEventListener('touchmove', e => {
+  if (!cardDrag) return;
+  e.preventDefault();
+  moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: false });
+document.addEventListener('touchend', e => {
+  if (!cardDrag) return;
+  endDrag(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+});
+
+// Dismiss card when clicking anywhere outside it
+document.addEventListener('click', () => {
+  if (justDragged) return;
+  retractCassette();
+});
 
 // ============================================================
 //  BUILD SHELF
@@ -1334,11 +1418,11 @@ function makeSpine(c) {
   const el = document.createElement('div');
   el.className = `cassette-spine cat-${c.cat}`;
   el.dataset.id = c.id;
+  el.style.setProperty('--dot', cat.color);
   el.title = `#${String(c.id).padStart(2,'0')} · ${c.label} ${c.sub} — ${cat.label} · fes clic per treure`;
 
   el.innerHTML = `
     <div class="spine-inner">
-      <div class="spine-dot" style="background:${cat.color}"></div>
       <div class="spine-label">${c.label}</div>
       <div class="spine-num">${String(c.id).padStart(2,'0')}</div>
     </div>`;
@@ -1354,17 +1438,19 @@ function makeSpine(c) {
 }
 
 // ============================================================
-//  DROP ZONE
+//  DROP ZONE  (highlight when card hovers over it)
 // ============================================================
 const win = document.getElementById('cassetteWindow');
-win.addEventListener('dragover', e => { e.preventDefault(); win.classList.add('drag-over'); });
-win.addEventListener('dragleave', () => win.classList.remove('drag-over'));
-win.addEventListener('drop', e => {
-  e.preventDefault();
-  win.classList.remove('drag-over');
-  const id = parseInt(e.dataTransfer.getData('text/plain'));
-  if (id) loadCassette(id);
+// Highlight on custom drag
+document.addEventListener('mousemove', e => {
+  if (!cardDrag) return;
+  const r = win.getBoundingClientRect();
+  const over = e.clientX >= r.left && e.clientX <= r.right &&
+               e.clientY >= r.top  && e.clientY <= r.bottom;
+  win.classList.toggle('drag-over', over);
 });
+document.addEventListener('mouseup',   () => win.classList.remove('drag-over'));
+document.addEventListener('touchend',  () => win.classList.remove('drag-over'));
 
 // ============================================================
 //  LOAD CASSETTE
