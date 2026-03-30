@@ -913,22 +913,9 @@
 
   <!-- SHELF -->
   <div class="cabinet-section">
-    <p class="section-label">Col·lecció completa — 60 casettes</p>
     <div class="cabinet" id="cabinet">
       <!-- Rows rendered by JS -->
     </div>
-  </div>
-
-  <!-- LEGEND -->
-  <div class="legend" id="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#e53935"></div>Rock / Pop</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#1e88e5"></div>Balades</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#e8c830"></div>Flamenc / Copla</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#43a047"></div>Internacional</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#fb8c00"></div>Disco / Electro</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#8e24aa"></div>Clàssica</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#e91e63"></div>Rumba / Salsa</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#00897b"></div>Jazz / Blues</div>
   </div>
 
   <!-- PLAYER -->
@@ -1116,6 +1103,18 @@
     </div><!-- /boombox-wrap -->
   </div>
 
+  <!-- LEGEND -->
+  <div class="legend" id="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#e53935"></div>Rock / Pop</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1e88e5"></div>Balades</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e8c830"></div>Flamenc / Copla</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#43a047"></div>Internacional</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#fb8c00"></div>Disco / Electro</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8e24aa"></div>Clàssica</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e91e63"></div>Rumba / Salsa</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#00897b"></div>Jazz / Blues</div>
+  </div>
+
 </div><!-- /wrap -->
 
 <script>
@@ -1242,7 +1241,7 @@ function extractCassette(c, spineEl) {
         <div class="cc-notch"></div><div class="cc-notch"></div>
       </div>
     </div>
-    <div class="cc-hint">arrossega cap al reproductor</div>`;
+`;
 
   // Position at spine center
   const rect = spineEl.getBoundingClientRect();
