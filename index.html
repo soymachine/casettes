@@ -1266,10 +1266,11 @@ function extractCassette(c, spineEl) {
       // Grab actual rendered position before removing the animation
       const r = card.getBoundingClientRect();
       card.classList.remove('cc-show');
-      card.style.left      = `${r.left + r.width  / 2}px`;
-      card.style.top       = `${r.top  + r.height / 2}px`;
-      card.style.transform = 'translate(-50%, -50%)';
-      card.style.opacity   = '1';
+      card.style.left          = `${r.left + r.width  / 2}px`;
+      card.style.top           = `${r.top  + r.height / 2}px`;
+      card.style.transform     = 'translate(-50%, -50%)';
+      card.style.opacity       = '1';
+      card.style.pointerEvents = 'all';
       attachCardDrag(card, c.id);
     }, { once: true });
   });
