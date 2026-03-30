@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Casettes d'en Guillem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Josefin+Slab:ital,wght@0,300;0,600;1,300&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0e0804;
+      --amber: #d4782a;
+      --amber-bright: #f0a050;
+      --cream: #eddfc0;
+      --cream-dim: rgba(237,223,192,0.45);
+      --wood-dark: #1c0e06;
+      --wood-mid: #3a1a08;
+      --wood-light: #6b3a18;
+      --led-on: #6eff30;
+      --led-dim: #1a3a0a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 40% at 50% 0%, rgba(212,120,42,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 85% 80%, rgba(212,120,42,0.05) 0%, transparent 60%);
+      min-height: 100vh;
+      font-family: 'Special Elite', cursive;
+      color: var(--cream);
+      padding-bottom: 5rem;
+    }
+
+    /* ============ HEADER ============ */
+    .site-header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      position: relative;
+    }
+    .eyebrow {
+      font-family: 'Josefin Slab', serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.75;
+      margin-bottom: 0.6rem;
+    }
+    .site-header h1 {
+      font-family: 'Josefin Slab', serif;
+      font-weight: 600;
+      font-size: clamp(1.9rem, 5.5vw, 3.8rem);
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      text-shadow: 0 0 50px rgba(212,120,42,0.25);
+      line-height: 1.1;
+    }
+    .site-header h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--amber-bright);
+    }
+    .subtitle {
+      font-family: 'Josefin Slab', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      margin-top: 0.65rem;
+      letter-spacing: 0.06em;
+    }
+    .header-rule {
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin: 1.4rem auto 0;
+    }
+
+    /* ============ LAYOUT ============ */
+    .wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.8rem;
+    }
+
+    /* ============ CABINET ============ */
+    .cabinet-section { width: 100%; }
+    .section-label {
+      font-family: 'Josefin Slab', serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(212,120,42,0.55);
+      text-align: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .cabinet {
+      width: 100%;
+      background: linear-gradient(170deg, #2e1508 0%, #1e0e06 55%, #160a04 100%);
+      border-radius: 6px;
+      padding: 18px 22px 22px;
+      position: relative;
+      box-shadow:
+        inset 0 1px 0 rgba(255,200,120,0.09),
+        inset 2px 0 4px rgba(255,200,120,0.03),
+        inset -2px 0 4px rgba(0,0,0,0.4),
+        0 8px 0 #0b0502,
+        0 14px 0 #080400,
+        0 22px 45px rgba(0,0,0,0.9),
+        0 0 0 1.5px #000;
+    }
+    /* Top chrome rail */
+    .cabinet::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(180deg, rgba(255,190,100,0.18) 0%, transparent 100%);
+      border-radius: 6px 6px 0 0;
+    }
+    /* Inner side shadows */
+    .cabinet::after {
+      content: '';
+      position: absolute;
+      inset: 18px 0 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.25) 0%, transparent 5%, transparent 95%, rgba(0,0,0,0.25) 100%);
+      pointer-events: none;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .shelf-row {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding: 10px 8px 6px;
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.22) 0%,
+        rgba(0,0,0,0.06) 45%,
+        rgba(0,0,0,0.3) 100%);
+      border-bottom: 3px solid #0a0503;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.025),
+        0 3px 6px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .shelf-row::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #100601, #2c1208, #100601);
+    }
+    .shelf-row:last-child { margin-bottom: 0; }
+
+    /* ============ CASSETTE SPINE ============ */
+    .cassette-spine {
+      width: 30px;
+      height: 98px;
+      flex-shrink: 0;
+      border-radius: 2px 2px 1px 1px;
+      cursor: grab;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.14s ease, filter 0.14s ease, box-shadow 0.14s ease;
+      user-select: none;
+    }
+    .cassette-spine:hover {
+      transform: translateY(-7px) scaleY(1.015);
+      filter: brightness(1.18);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.7), 0 0 8px rgba(212,120,42,0.15);
+      z-index: 10;
+    }
+    .cassette-spine:active { cursor: grabbing; }
+    .cassette-spine.dragging { opacity: 0.25; transform: translateY(-3px); }
+    .cassette-spine.in-player { opacity: 0.12; pointer-events: none; cursor: default; }
+
+    /* Spine content layout */
+    .spine-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 3px 5px;
+      gap: 3px;
+    }
+    .spine-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.28);
+    }
+    .spine-label {
+      font-family: 'Josefin Slab', serif;
+      font-size: 7.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      writing-mode: vertical-rl;
+      overflow: hidden;
+      flex: 1;
+      white-space: nowrap;
+      line-height: 30px;
+    }
+    .spine-num {
+      font-family: 'VT323', monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1;
+      writing-mode: vertical-rl;
+    }
+    /* Gloss sheen */
+    .cassette-spine::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(270deg, rgba(255,255,255,0.07) 0%, transparent 35%, rgba(0,0,0,0.12) 100%);
+      pointer-events: none;
+    }
+
+    /* Category backgrounds */
+    .cat-red    { background: linear-gradient(180deg, #3d1515, #280d0d); }
+    .cat-blue   { background: linear-gradient(180deg, #152240, #0d1628); }
+    .cat-yellow { background: linear-gradient(180deg, #3a360e, #252208); }
+    .cat-green  { background: linear-gradient(180deg, #163018, #0e200f); }
+    .cat-orange { background: linear-gradient(180deg, #3d220e, #281508); }
+    .cat-purple { background: linear-gradient(180deg, #251535, #180d22); }
+    .cat-pink   { background: linear-gradient(180deg, #351525, #220d18); }
+    .cat-teal   { background: linear-gradient(180deg, #153530, #0d2220); }
+
+    /* ============ LEGEND ============ */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      justify-content: center;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Josefin Slab', serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--cream-dim);
+    }
+    .legend-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ============ PLAYER SECTION ============ */
+    .player-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .player-hint {
+      font-family: 'Josefin Slab', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: rgba(212,120,42,0.5);
+      transition: opacity 0.6s ease;
+    }
+    .player-hint.hidden { opacity: 0; }
+
+    /* ======= BOOMBOX ======= */
+    .boombox-wrap {
+      width: 100%;
+      max-width: 860px;
+      position: relative;
+    }
+    .boombox {
+      width: 100%;
+      background: linear-gradient(175deg, #252525 0%, #1c1c1c 100%);
+      border-radius: 10px;
+      position: relative;
+      overflow: visible;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 4px 0 #0e0e0e,
+        0 8px 0 #090909,
+        0 18px 45px rgba(0,0,0,0.95),
+        0 0 0 1.5px #080808;
+    }
+    /* Top chrome strip */
+    .boombox::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #333, #666, #999, #bbb, #999, #666, #333);
+      border-radius: 10px 10px 0 0;
+    }
+
+    /* Top knob strip */
+    .boombox-top-strip {
+      background: linear-gradient(180deg, #1e1e1e, #181818);
+      border-radius: 10px 10px 0 0;
+      border-bottom: 2px solid #0c0c0c;
+      padding: 7px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .top-knob {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 32%, #555, #1e1e1e);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.7), 0 0 0 1px #111;
+      flex-shrink: 0;
+    }
+    .top-knob.lg { width: 14px; height: 14px; }
+    .top-strip-spacer { flex: 1; }
+    .top-led {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #1a3a0a;
+      box-shadow: inset 0 1px 0 rgba(0,0,0,0.5);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+    .top-led.on { background: #6eff30; box-shadow: 0 0 6px #6eff30; }
+
+    /* Main face */
+    .boombox-face {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px 12px;
+      gap: 10px;
+      position: relative;
+    }
+
+    /* Corner tweeters */
+    .tweeter {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background-color: #111;
+      background-image: radial-gradient(circle, #2a2a2a 1.2px, transparent 1.2px);
+      background-size: 4.5px 4.5px;
+      border: 2px solid #282828;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin-top: 8px;
+      box-shadow:
+        inset 0 2px 6px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    /* SPEAKERS */
+    .speaker-mount { flex-shrink: 0; }
+    .speaker-ring {
+      width: 185px; height: 185px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #666 0deg, #999 25deg, #ccc 50deg, #eee 80deg, #ddd 100deg,
+        #aaa 130deg, #888 160deg, #bbb 190deg, #ddd 220deg,
+        #bbb 250deg, #888 280deg, #aaa 310deg, #ccc 340deg, #666 360deg
+      );
+      padding: 8px;
+      box-shadow:
+        0 6px 22px rgba(0,0,0,0.9),
+        inset 0 2px 0 rgba(255,255,255,0.18),
+        0 0 0 2px rgba(0,0,0,0.6);
+    }
+    .speaker-grille {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background-color: #0c0c0c;
+      background-image: radial-gradient(circle, #2d2d2d 1.5px, transparent 1.5px);
+      background-size: 6.5px 6.5px;
+      box-shadow: inset 0 5px 28px rgba(0,0,0,0.97);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Woofer surround */
+    .speaker-grille::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 35%, #383838, #0f0f0f);
+      box-shadow: 0 0 0 9px rgba(7,7,7,0.92), 0 0 22px rgba(0,0,0,0.8);
+    }
+    /* Dust cap */
+    .speaker-grille::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #555, #222);
+      box-shadow: 0 0 0 2px #111;
+    }
+
+    /* CENTER SECTION */
+    .boombox-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    /* ANALOG VU DIALS */
+    .vu-dials-row { display: flex; gap: 5px; }
+    .vu-dial { flex: 1; }
+    .vu-dial svg {
+      width: 100%; height: auto; display: block;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.75));
+    }
+
+    /* Brand */
+    .boombox-brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .boombox-brand-txt {
+      font-family: 'Josefin Slab', serif;
+      font-weight: 600;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      color: #454545;
+      text-transform: uppercase;
+    }
+    .brand-micro-dot { width: 4px; height: 4px; border-radius: 50%; background: #363636; flex-shrink: 0; }
+
+    /* CASSETTE WINDOW */
+    .cassette-window {
+      background: #1e1e1e;
+      border-radius: 10px;
+      padding: 8px 8px 7px;
+      position: relative;
+      overflow: visible;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 2px 8px rgba(0,0,0,0.6),
+        0 0 0 1px rgba(0,0,0,0.9);
+      transition: box-shadow 0.25s ease;
+    }
+    .cassette-window.drag-over {
+      box-shadow:
+        0 0 0 2px var(--amber),
+        0 0 18px rgba(212,120,42,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    /* Inner tape viewport (the grey area) */
+    .tape-viewport {
+      background: #2c2c2c;
+      border-radius: 5px;
+      height: 72px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        inset 0 4px 14px rgba(0,0,0,0.88),
+        inset 0 0 0 1px rgba(0,0,0,0.7),
+        inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    /* Drop prompt — positioned inside .tape-viewport */
+    .drop-prompt {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: opacity 0.3s ease;
+    }
+    .drop-prompt.hidden { opacity: 0; pointer-events: none; }
+    .drop-ring {
+      width: 32px; height: 32px;
+      border: 1.5px dashed rgba(212,120,42,0.38);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(212,120,42,0.45);
+      font-size: 16px;
+      animation: pulseDrop 2.2s ease-in-out infinite;
+    }
+    @keyframes pulseDrop {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.12); }
+    }
+    .drop-text {
+      font-family: 'Josefin Slab', serif;
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(212,120,42,0.38);
+    }
+
+    /* Cassette in player — positioned inside .tape-viewport */
+    .cip { position: absolute; inset: 5px 8px 4px; display: none; flex-direction: column; }
+    .cip.visible { display: flex; }
+    @keyframes insertAnim {
+      0%   { transform: translateY(-22px); opacity: 0; }
+      65%  { transform: translateY(3px); }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .cip.inserting { animation: insertAnim 0.38s ease forwards; }
+    .cip-body {
+      flex: 1;
+      background: linear-gradient(180deg, #2a2a2a, #1c1c1c);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cip-label-area {
+      position: absolute; inset: 4px 10px;
+      background: #f0e4c0;
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1px; overflow: hidden;
+    }
+    .cip-label-name {
+      font-family: 'Josefin Slab', serif;
+      font-size: 7.5px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #333;
+      text-align: center; padding: 0 4px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+    }
+    .cip-label-sub { font-family: 'VT323', monospace; font-size: 13px; color: #666; line-height: 1; }
+    .cip-label-area::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--cip-color, #888);
+    }
+    .spool {
+      position: absolute; bottom: 5px;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: conic-gradient(
+        #484848 0deg, #2a2a2a 60deg, #484848 60deg, #2a2a2a 120deg,
+        #484848 120deg, #2a2a2a 180deg, #484848 180deg, #2a2a2a 240deg,
+        #484848 240deg, #2a2a2a 300deg, #484848 300deg, #2a2a2a 360deg
+      );
+      border: 2px solid #1a1a1a;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.8), 0 0 0 1px #111;
+    }
+    .spool::after {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 7px; height: 7px;
+      background: radial-gradient(circle at 38% 32%, #666, #2a2a2a);
+      border-radius: 50%; box-shadow: 0 0 0 2px #1a1a1a;
+    }
+    .spool.left  { left: 8px; }
+    .spool.right { right: 8px; }
+    @keyframes spoolSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .cip-body.playing .spool.left  { animation: spoolSpin 1.8s linear infinite; }
+    .cip-body.playing .spool.right { animation: spoolSpin 2.2s linear infinite reverse; }
+
+    .loading-badge {
+      position: absolute; top: 5px; right: 6px;
+      background: rgba(0,0,0,0.7); border-radius: 2px; padding: 1px 5px;
+      font-family: 'VT323', monospace; font-size: 0.55rem; letter-spacing: 0.1em;
+      color: rgba(110,255,48,0.7); display: none;
+    }
+    .loading-badge.visible { display: block; }
+
+    /* Auto stop label */
+    .auto-stop-label {
+      font-family: 'Josefin Slab', serif;
+      font-size: 0.48rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #383838; text-align: right; padding-right: 2px; margin-top: -3px;
+    }
+
+    /* TRANSPORT BUTTONS — dome key style */
+    .boom-btns-row {
+      display: flex;
+      gap: 5px;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .boom-btn-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .btn-lbl {
+      font-family: 'VT323', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.04em;
+      color: #c8d418;
+      text-transform: uppercase;
+      white-space: nowrap;
+      line-height: 1;
+      user-select: none;
+    }
+    .bbtn {
+      width: 30px;
+      height: 19px;
+      background: linear-gradient(180deg, #484848 0%, #333 60%, #2a2a2a 100%);
+      border: none;
+      border-radius: 4px 4px 3px 3px;
+      cursor: pointer;
+      outline: none;
+      font-family: inherit;
+      font-size: 0px; /* hide any text, use labels above */
+      color: transparent;
+      position: relative;
+      box-shadow:
+        0 4px 0 #141414,
+        0 5px 0 #0a0a0a,
+        inset 0 1px 0 rgba(255,255,255,0.14),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+      transition: transform 0.06s ease, box-shadow 0.06s ease;
+    }
+    .bbtn::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 4px; right: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+    }
+    .bbtn:hover { background: linear-gradient(180deg, #545454, #3c3c3c 60%, #333 100%); }
+    .bbtn:active, .bbtn.active {
+      transform: translateY(3px);
+      box-shadow:
+        0 1px 0 #141414,
+        inset 0 2px 6px rgba(0,0,0,0.6);
+    }
+    /* Yellow play button */
+    .bbtn.play-bbtn {
+      width: 34px;
+      background: linear-gradient(180deg, #d8e428 0%, #b0bc18 60%, #9aaa10 100%);
+      box-shadow:
+        0 4px 0 #5a6000,
+        0 5px 0 #3a3e00,
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+    .bbtn.play-bbtn::after {
+      background: rgba(255,255,255,0.2);
+    }
+    .bbtn.play-bbtn:hover {
+      background: linear-gradient(180deg, #e4f030, #bcc820 60%, #a8b418 100%);
+    }
+    .bbtn.play-bbtn:active, .bbtn.play-bbtn.active {
+      background: linear-gradient(180deg, #b0bc18, #909a10);
+      box-shadow: 0 1px 0 #5a6000, inset 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .bbtn.eject-bbtn:hover { box-shadow: 0 4px 0 #141414, 0 5px 0 #0a0a0a, 0 0 6px rgba(212,120,42,0.3), inset 0 1px 0 rgba(255,255,255,0.14); }
+
+    /* HANDLE */
+    .boombox-handle {
+      position: absolute; right: -18px; top: 50%; transform: translateY(-50%);
+      width: 14px; height: 90px;
+      background: linear-gradient(90deg, #888, #bbb, #ddd, #eee, #ddd, #bbb, #888);
+      border-radius: 7px;
+      box-shadow: 3px 4px 12px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    /* BOTTOM STRIP */
+    .boombox-bottom {
+      display: flex; align-items: center; gap: 14px;
+      padding: 8px 18px 13px;
+      border-top: 1px solid #141414;
+      border-radius: 0 0 10px 10px;
+      background: rgba(0,0,0,0.15);
+    }
+    .vol-row { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+    .vol-lbl { font-family: 'VT323', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: #404040; }
+    .vol-icon { color: #444; font-size: 12px; }
+    input[type=range].vol-slider {
+      -webkit-appearance: none; width: 90px; height: 3px;
+      background: #222; border-radius: 2px; outline: none; cursor: pointer;
+    }
+    input[type=range].vol-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 12px; height: 12px;
+      background: linear-gradient(180deg, #606060, #383838);
+      border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      cursor: pointer; transition: transform 0.1s;
+    }
+    input[type=range].vol-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      background: linear-gradient(180deg, #787878, #484848);
+    }
+
+    /* NOW PLAYING */
+    .now-playing {
+      display: flex; align-items: center; gap: 10px;
+      flex: 1; overflow: hidden; transition: opacity 0.4s ease;
+    }
+    .now-playing.empty { opacity: 0.22; }
+    .np-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      background: #2a2a2a; transition: background 0.3s, box-shadow 0.3s;
+    }
+    .np-dot.glow { box-shadow: 0 0 7px currentColor; }
+    .np-info { flex: 1; overflow: hidden; }
+    .np-title {
+      font-family: 'Josefin Slab', serif; font-size: 0.82rem; font-weight: 600;
+      color: var(--cream); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .np-meta {
+      font-family: 'VT323', monospace; font-size: 0.68rem;
+      color: rgba(212,120,42,0.5); letter-spacing: 0.1em;
+    }
+
+    /* ============ CASSETTE CARD (floating) ============ */
+    .cassette-card {
+      position: fixed;
+      width: 174px;
+      height: 110px;
+      z-index: 2000;
+      cursor: grab;
+      border-radius: 5px;
+      transform: translate(-50%, -50%) scale(0.15) rotateY(-80deg);
+      opacity: 0;
+      pointer-events: none;
+      filter: drop-shadow(0 16px 32px rgba(0,0,0,0.8)) drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+    .cassette-card.cc-show {
+      animation: ccPop 0.44s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      pointer-events: all;
+    }
+    .cassette-card.cc-hide {
+      animation: ccRetract 0.22s ease-in forwards;
+      pointer-events: none;
+    }
+    .cassette-card.cc-dragging { cursor: grabbing; opacity: 0.6 !important; }
+
+    @keyframes ccPop {
+      0%   { transform: translate(-50%, -50%) scale(0.15) rotateY(-80deg); opacity: 0; }
+      30%  { opacity: 1; }
+      100% { transform: translate(-50%, calc(-50% - 100px)) scale(1) rotateY(0deg); opacity: 1; }
+    }
+    @keyframes ccRetract {
+      0%   { transform: translate(-50%, calc(-50% - 100px)) scale(1) rotateY(0deg); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0.15) rotateY(80deg); opacity: 0; }
+    }
+
+    .cc-body {
+      width: 100%; height: 100%;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--cc-body, #2a1a08);
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 1px 0 0 rgba(255,255,255,0.05),
+        inset -1px 0 0 rgba(0,0,0,0.3);
+    }
+    /* Label sticker */
+    .cc-label-area {
+      flex-shrink: 0;
+      height: 50px;
+      margin: 5px 5px 0;
+      border-radius: 2px 2px 0 0;
+      padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+      background: var(--cc-label, #e8e0c8);
+    }
+    /* Lined paper texture on label */
+    .cc-label-area::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 50%;
+      background: repeating-linear-gradient(
+        180deg, transparent 0px, transparent 3px,
+        rgba(0,0,0,0.055) 3px, rgba(0,0,0,0.055) 4px
+      );
+      pointer-events: none;
+    }
+    .cc-cat-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .cc-label-text { flex: 1; overflow: hidden; }
+    .cc-title {
+      font-family: 'Josefin Slab', serif;
+      font-size: 7.5px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #222;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      line-height: 1.4;
+    }
+    .cc-sub {
+      font-family: 'VT323', monospace;
+      font-size: 11px; color: rgba(0,0,0,0.42); line-height: 1;
+    }
+    .cc-num {
+      font-family: 'VT323', monospace;
+      font-size: 17px; color: rgba(0,0,0,0.28); flex-shrink: 0; line-height: 1;
+    }
+    /* Tape mechanism window */
+    .cc-mechanism {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 12px; gap: 0;
+      background: #0d0d0d;
+      margin: 0 5px;
+      position: relative;
+    }
+    .cc-spool-win {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: #141414;
+      border: 2px solid #0a0a0a;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 0 0 1px #080808;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cc-spool-hub {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: conic-gradient(
+        #454545 0deg, #222 60deg, #454545 60deg, #222 120deg,
+        #454545 120deg, #222 180deg, #454545 180deg, #222 240deg,
+        #454545 240deg, #222 300deg, #454545 300deg, #222 360deg
+      );
+      box-shadow: 0 0 0 2px #111;
+    }
+    .cc-tape-path {
+      flex: 1; height: 5px;
+      background: linear-gradient(180deg, #2e1c0a, #1a0e04);
+      border-radius: 1px; margin: 0 4px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
+    }
+    /* Bottom strip with notches */
+    .cc-strip {
+      height: 12px; margin: 0 5px 4px;
+      background: #111;
+      border-radius: 0 0 2px 2px;
+      display: flex; align-items: center;
+      justify-content: space-evenly; padding: 0 18px;
+    }
+    .cc-notch {
+      width: 10px; height: 5px; background: #0a0a0a;
+      border-radius: 1px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.9);
+    }
+    /* Drag-to-player hint */
+    .cc-hint {
+      position: absolute;
+      bottom: -20px; left: 0; right: 0;
+      text-align: center;
+      font-family: 'Josefin Slab', serif;
+      font-size: 0.55rem; font-style: italic; font-weight: 300;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(212,120,42,0.55);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* Spine slot when cassette is extracted */
+    .cassette-spine.spine-extracting {
+      opacity: 0.1;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 640px) {
+      .speaker-ring { width: 120px; height: 120px; }
+      .boombox-face { padding: 10px 10px; gap: 6px; }
+      .tweeter { width: 22px; height: 22px; }
+      .boombox-handle { right: -12px; width: 10px; height: 60px; }
+      .boom-btns-row .bbtn { font-size: 9px; height: 22px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <p class="eyebrow">En memòria de l'avi</p>
+  <h1>Les Casettes <em>d'en Guillem</em></h1>
+  <p class="subtitle">Una col·lecció de 60 cintes gravades amb amor — anys 80 i 90</p>
+  <div class="header-rule"></div>
+</header>
+
+<div class="wrap">
+
+  <!-- SHELF -->
+  <div class="cabinet-section">
+    <p class="section-label">Col·lecció completa — 60 casettes</p>
+    <div class="cabinet" id="cabinet">
+      <!-- Rows rendered by JS -->
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend" id="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#e53935"></div>Rock / Pop</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1e88e5"></div>Balades</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e8c830"></div>Flamenc / Copla</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#43a047"></div>Internacional</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#fb8c00"></div>Disco / Electro</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8e24aa"></div>Clàssica</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e91e63"></div>Rumba / Salsa</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#00897b"></div>Jazz / Blues</div>
+  </div>
+
+  <!-- PLAYER -->
+  <div class="player-section">
+    <p class="player-hint" id="playerHint">↑ Arrossega una casette al reproductor, o fes-hi clic</p>
+
+    <div class="boombox-wrap">
+      <div class="boombox" id="player">
+
+        <!-- TOP KNOB STRIP -->
+        <div class="boombox-top-strip">
+          <div class="top-knob lg"></div>
+          <div class="top-knob"></div>
+          <div class="top-knob"></div>
+          <div class="top-knob"></div>
+          <div class="top-strip-spacer"></div>
+          <div class="top-knob"></div>
+          <div class="top-knob"></div>
+          <div class="top-knob lg"></div>
+          <div class="top-knob"></div>
+          <div class="top-led" id="topLed"></div>
+        </div>
+
+        <!-- MAIN FACE -->
+        <div class="boombox-face">
+          <div class="tweeter"></div>
+
+          <!-- Left speaker -->
+          <div class="speaker-mount">
+            <div class="speaker-ring"><div class="speaker-grille"></div></div>
+          </div>
+
+          <!-- CENTER SECTION -->
+          <div class="boombox-center">
+
+            <!-- Analog VU meters -->
+            <div class="vu-dials-row">
+              <div class="vu-dial">
+                <svg viewBox="0 0 120 86" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="vg" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#f8c840"/>
+                      <stop offset="60%" stop-color="#e8a818"/>
+                      <stop offset="100%" stop-color="#c88500"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="120" height="86" rx="4" fill="#111"/>
+                  <rect x="2.5" y="2.5" width="115" height="81" rx="3" fill="url(#vg)"/>
+                  <path d="M 60 80 L 90 34 A 53 53 0 0 1 112 57 Z" fill="rgba(170,0,0,0.22)"/>
+                  <path d="M 14 57 A 53 53 0 0 1 106 57" fill="none" stroke="#7a5500" stroke-width="1.8"/>
+                  <line x1="14" y1="57" x2="8"  y2="53" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="29" y1="38" x2="24" y2="32" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="48" y1="27" x2="45" y2="20" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="60" y1="27" x2="60" y2="20" stroke="#7a5500" stroke-width="2"/>
+                  <line x1="72" y1="27" x2="75" y2="20" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="91" y1="38" x2="96" y2="32" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="106" y1="57" x2="112" y2="53" stroke="#7a5500" stroke-width="1.2"/>
+                  <text x="15"  y="69" text-anchor="middle" font-size="6" font-family="monospace" fill="#7a5500">-20</text>
+                  <text x="60"  y="42" text-anchor="middle" font-size="6" font-family="monospace" fill="#7a5500">0</text>
+                  <text x="108" y="69" text-anchor="middle" font-size="6" font-family="monospace" fill="#8a2000">+3</text>
+                  <text x="60"  y="74" text-anchor="middle" font-size="10" font-family="monospace" font-weight="bold" fill="#7a5500">VU</text>
+                  <g id="vuNeedleL" transform="rotate(-62, 60, 80)">
+                    <line x1="60" y1="27" x2="60" y2="84" stroke="#cc1500" stroke-width="1.8" stroke-linecap="round"/>
+                  </g>
+                  <circle cx="60" cy="80" r="5" fill="#3a2800"/>
+                  <circle cx="60" cy="80" r="2" fill="#888"/>
+                </svg>
+              </div>
+              <div class="vu-dial">
+                <svg viewBox="0 0 120 86" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="vg2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#f8c840"/>
+                      <stop offset="60%" stop-color="#e8a818"/>
+                      <stop offset="100%" stop-color="#c88500"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="120" height="86" rx="4" fill="#111"/>
+                  <rect x="2.5" y="2.5" width="115" height="81" rx="3" fill="url(#vg2)"/>
+                  <path d="M 60 80 L 90 34 A 53 53 0 0 1 112 57 Z" fill="rgba(170,0,0,0.22)"/>
+                  <path d="M 14 57 A 53 53 0 0 1 106 57" fill="none" stroke="#7a5500" stroke-width="1.8"/>
+                  <line x1="14" y1="57" x2="8"  y2="53" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="29" y1="38" x2="24" y2="32" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="48" y1="27" x2="45" y2="20" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="60" y1="27" x2="60" y2="20" stroke="#7a5500" stroke-width="2"/>
+                  <line x1="72" y1="27" x2="75" y2="20" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="91" y1="38" x2="96" y2="32" stroke="#7a5500" stroke-width="1.2"/>
+                  <line x1="106" y1="57" x2="112" y2="53" stroke="#7a5500" stroke-width="1.2"/>
+                  <text x="15"  y="69" text-anchor="middle" font-size="6" font-family="monospace" fill="#7a5500">-20</text>
+                  <text x="60"  y="42" text-anchor="middle" font-size="6" font-family="monospace" fill="#7a5500">0</text>
+                  <text x="108" y="69" text-anchor="middle" font-size="6" font-family="monospace" fill="#8a2000">+3</text>
+                  <text x="60"  y="74" text-anchor="middle" font-size="10" font-family="monospace" font-weight="bold" fill="#7a5500">VU</text>
+                  <g id="vuNeedleR" transform="rotate(-62, 60, 80)">
+                    <line x1="60" y1="27" x2="60" y2="84" stroke="#cc1500" stroke-width="1.8" stroke-linecap="round"/>
+                  </g>
+                  <circle cx="60" cy="80" r="5" fill="#3a2800"/>
+                  <circle cx="60" cy="80" r="2" fill="#888"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Brand -->
+            <div class="boombox-brand-row">
+              <div class="brand-micro-dot"></div>
+              <span class="boombox-brand-txt">Memorex RX-90</span>
+              <div class="brand-micro-dot"></div>
+            </div>
+
+            <!-- Cassette window / drop zone -->
+            <div class="cassette-window" id="cassetteWindow">
+              <div class="tape-viewport">
+                <div class="drop-prompt" id="dropPrompt">
+                  <div class="drop-ring">↓</div>
+                  <span class="drop-text">Insereix una casette</span>
+                </div>
+                <div class="cip" id="cip">
+                  <div class="cip-body" id="cipBody">
+                    <div class="cip-label-area" id="cipLabel">
+                      <span class="cip-label-name" id="cipName">—</span>
+                      <span class="cip-label-sub" id="cipNum">00</span>
+                    </div>
+                    <div class="spool left" id="spoolL"></div>
+                    <div class="spool right" id="spoolR"></div>
+                  </div>
+                </div>
+                <div class="loading-badge" id="loadingBadge">CARREGANT...</div>
+              </div>
+            </div>
+
+            <div class="auto-stop-label">AUTO STOP ──────→</div>
+
+            <!-- Transport buttons — dome key style with labels -->
+            <div class="boom-btns-row">
+              <div class="boom-btn-group">
+                <span class="btn-lbl">PLAY ▶</span>
+                <button class="bbtn play-bbtn" id="btnPlay" title="Reprodueix / Pausa"></button>
+              </div>
+              <div class="boom-btn-group">
+                <span class="btn-lbl">REW ◀◀</span>
+                <button class="bbtn" id="btnRew" title="−10s"></button>
+              </div>
+              <div class="boom-btn-group">
+                <span class="btn-lbl">F.FWD ▶▶</span>
+                <button class="bbtn" id="btnFwd" title="+10s"></button>
+              </div>
+              <div class="boom-btn-group">
+                <span class="btn-lbl">STOP ■</span>
+                <button class="bbtn" id="btnStop" title="Stop"></button>
+              </div>
+              <div class="boom-btn-group">
+                <span class="btn-lbl">EJECT ⏏</span>
+                <button class="bbtn eject-bbtn" id="btnEject" title="Expulsa"></button>
+              </div>
+            </div>
+
+          </div><!-- /boombox-center -->
+
+          <!-- Right speaker -->
+          <div class="speaker-mount">
+            <div class="speaker-ring"><div class="speaker-grille"></div></div>
+          </div>
+
+          <div class="tweeter"></div>
+          <div class="boombox-handle"></div>
+        </div><!-- /boombox-face -->
+
+        <!-- BOTTOM: volume + now playing -->
+        <div class="boombox-bottom">
+          <div class="vol-row">
+            <span class="vol-lbl">VOL</span>
+            <span class="vol-icon">🔈</span>
+            <input type="range" class="vol-slider" id="volSlider" min="0" max="100" value="75">
+            <span class="vol-icon">🔊</span>
+          </div>
+          <div class="now-playing empty" id="nowPlaying">
+            <div class="np-dot" id="npDot"></div>
+            <div class="np-info">
+              <div class="np-title" id="npTitle">Sense casette</div>
+              <div class="np-meta" id="npMeta">—</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /boombox -->
+    </div><!-- /boombox-wrap -->
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+// ============================================================
+//  DATA
+// ============================================================
+const CATS = {
+  red:    { color: '#e53935', label: 'Rock / Pop' },
+  blue:   { color: '#1e88e5', label: 'Balades' },
+  yellow: { color: '#e8c830', label: 'Flamenc / Copla' },
+  green:  { color: '#43a047', label: 'Internacional' },
+  orange: { color: '#fb8c00', label: 'Disco / Electro' },
+  purple: { color: '#8e24aa', label: 'Clàssica' },
+  pink:   { color: '#e91e63', label: 'Rumba / Salsa' },
+  teal:   { color: '#00897b', label: 'Jazz / Blues' },
+};
+
+// 17 free royalty-free tracks from SoundHelix
+const TRACKS = Array.from({ length: 17 }, (_, i) =>
+  `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${i + 1}.mp3`
+);
+
+const RAW = [
+  // red (8)
+  ['red', 'Rock Español', "'82"], ['red', 'Héroes', 'Mix'], ['red', 'Mecano', "'88"],
+  ['red', 'Radio Futura', 'Best'], ['red', 'Barón Rojo', "'85"], ['red', 'Los Secretos', 'Vol.2'],
+  ['red', 'Alaska', 'Pop'], ['red', 'Nacha Pop', 'Rock'],
+  // blue (8)
+  ['blue', 'Baladas Amor', "'90"], ['blue', 'Julio Iglesias', 'Éxitos'], ['blue', 'Raphael', 'Grandes'],
+  ['blue', 'Roberto Carlos', 'Best'], ['blue', 'Serrat', 'Clàssics'],
+  ['blue', 'Pablo Abraira', "'85"], ['blue', 'Camilo Sesto', 'Vol.1'], ['blue', 'Mari Trini', 'Amor'],
+  // yellow (7)
+  ['yellow', 'Camarón', 'Live'], ['yellow', 'Paco de Lucía', 'Guitarra'], ['yellow', 'Lola Flores', 'Jotas'],
+  ['yellow', 'Rocío Jurado', 'Copla'], ['yellow', 'El Fary', 'Mix'],
+  ['yellow', 'Chiquetete', 'Sevill.'], ['yellow', 'Marifé', 'Coplas'],
+  // green (8)
+  ['green', 'ABBA', 'Gold'], ['green', 'The Beatles', 'Best Of'], ['green', 'Dire Straits', "'85"],
+  ['green', 'Phil Collins', 'Face Val.'], ['green', 'Queen', 'Greatest'], ['green', 'M. Jackson', 'Off Wall'],
+  ['green', 'Stevie Wonder', 'Hits'], ['green', 'Simon & Garf.', 'Sounds'],
+  // orange (7)
+  ['orange', 'Boney M.', 'Rivers'], ['orange', 'Donna Summer', 'Disco'], ['orange', 'Village People', 'YMCA'],
+  ['orange', 'Moroder', 'Synth'], ['orange', 'Cerrone', 'Super.'],
+  ['orange', 'Bee Gees', 'Saturday'], ['orange', 'Eruption', 'Hits'],
+  // purple (7)
+  ['purple', 'Beethoven', 'Sinfonías'], ['purple', 'Mozart', 'Piano'], ['purple', 'Bach', 'Clavecín'],
+  ['purple', 'Vivaldi', '4 Est.'], ['purple', 'Chopin', 'Nocturnos'],
+  ['purple', 'Schubert', 'Imprompt.'], ['purple', 'Debussy', 'Claro Luna'],
+  // pink (7)
+  ['pink', 'Los Chunguitos', 'Mix'], ['pink', 'Celia Cruz', 'Salsa'], ['pink', 'Tito Puente', 'Mambo'],
+  ['pink', 'Los Chichos', 'Vol.1'], ['pink', 'Peret', 'Rumba'],
+  ['pink', 'Marisol', 'Pepa'], ['pink', 'El Arrebato', 'Sevill.'],
+  // teal (8)
+  ['teal', 'Miles Davis', 'Kind Blue'], ['teal', 'Chet Baker', 'Sings'], ['teal', 'Coltrane', 'A Love'],
+  ['teal', 'Louis Armstrong', 'Best'], ['teal', 'Ella Fitzgerald', 'Jazz'],
+  ['teal', 'B.B. King', 'Blues'], ['teal', 'Marsalis', "'85"], ['teal', 'Brubeck', 'Take 5'],
+];
+
+const CASSETTES = RAW.map((r, i) => ({
+  id: i + 1,
+  cat: r[0],
+  label: r[1],
+  sub: r[2],
+  src: TRACKS[i % TRACKS.length],
+}));
+
+// ============================================================
+//  STATE
+// ============================================================
+let current = null;   // cassette object
+let audio   = null;
+let playing = false;
+let vuTimer = null;
+let draggingId = null;
+
+// Cassette card extraction state
+let extractedCard  = null;
+let extractedSpine = null;
+let extractedId    = null;
+
+// ============================================================
+//  CASSETTE CARD HELPERS
+// ============================================================
+function darkenCat(hex) {
+  // simple darkening: parse rgb and multiply by 0.55
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `rgb(${Math.round(r*0.55)},${Math.round(g*0.55)},${Math.round(b*0.55)})`;
+}
+function labelColor(hex) {
+  // off-white tinted by category color
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `rgb(${Math.min(255,200+Math.round(r*0.22))},${Math.min(255,200+Math.round(g*0.22))},${Math.min(255,190+Math.round(b*0.22))})`;
+}
+
+function extractCassette(c, spineEl) {
+  // Retract any existing card first
+  if (extractedCard) retractCassette(true);
+
+  const cat = CATS[c.cat];
+  const bodyColor  = darkenCat(cat.color);
+  const lblColor   = labelColor(cat.color);
+  const numStr     = String(c.id).padStart(2,'0');
+
+  // Build the card element
+  const card = document.createElement('div');
+  card.className = 'cassette-card';
+  card.draggable = true;
+  card.innerHTML = `
+    <div class="cc-body" style="--cc-body:${bodyColor}; --cc-label:${lblColor}; --cc-accent:${cat.color};">
+      <div class="cc-label-area">
+        <div class="cc-label-text">
+          <div class="cc-title">${c.label}</div>
+          <div class="cc-sub">${c.sub} &nbsp;·&nbsp; ${cat.label}</div>
+        </div>
+        <div class="cc-num">#${numStr}</div>
+      </div>
+      <div class="cc-mechanism">
+        <div class="cc-spool-win"><div class="cc-spool-hub"></div></div>
+        <div class="cc-tape-path"></div>
+        <div class="cc-spool-win"><div class="cc-spool-hub"></div></div>
+      </div>
+      <div class="cc-strip">
+        <div class="cc-notch"></div><div class="cc-notch"></div>
+      </div>
+    </div>
+    <div class="cc-hint">arrossega cap al reproductor</div>`;
+
+  // Position at spine center
+  const rect = spineEl.getBoundingClientRect();
+  card.style.left = `${rect.left + rect.width / 2}px`;
+  card.style.top  = `${rect.top  + rect.height / 2}px`;
+
+  // Drag to player
+  card.addEventListener('dragstart', e => {
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', String(c.id));
+    card.classList.add('cc-dragging');
+    // Use a transparent 1x1 drag image so the card itself doesn't ghost
+    const img = new Image(); img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    e.dataTransfer.setDragImage(img, 0, 0);
+  });
+  card.addEventListener('dragend', () => card.classList.remove('cc-dragging'));
+
+  // Click on card = load it now
+  card.addEventListener('click', e => {
+    e.stopPropagation();
+    loadCassette(c.id);
+  });
+
+  document.body.appendChild(card);
+  extractedCard  = card;
+  extractedSpine = spineEl;
+  extractedId    = c.id;
+
+  spineEl.classList.add('spine-extracting');
+
+  // Trigger pop animation on next frame
+  requestAnimationFrame(() => card.classList.add('cc-show'));
+}
+
+function retractCassette(instant = false) {
+  if (!extractedCard) return;
+  const card  = extractedCard;
+  const spine = extractedSpine;
+
+  extractedCard  = null;
+  extractedSpine = null;
+  extractedId    = null;
+
+  if (spine) spine.classList.remove('spine-extracting');
+
+  if (instant) {
+    card.remove();
+    return;
+  }
+  card.classList.remove('cc-show');
+  card.classList.add('cc-hide');
+  card.addEventListener('animationend', () => card.remove(), { once: true });
+}
+
+function consumeCard() {
+  if (!extractedCard) return;
+  const card  = extractedCard;
+  const spine = extractedSpine;
+
+  extractedCard  = null;
+  extractedSpine = null;
+  extractedId    = null;
+
+  if (spine) spine.classList.remove('spine-extracting');
+
+  // Slide card down into player and fade out
+  card.style.transition = 'transform 0.3s ease-in, opacity 0.25s 0.1s ease-in';
+  card.style.transform  = 'translate(-50%, calc(-50% + 60px)) scale(0.5) rotateY(20deg)';
+  card.style.opacity    = '0';
+  setTimeout(() => card.remove(), 380);
+}
+
+// Dismiss card when clicking outside it
+document.addEventListener('click', () => retractCassette());
+
+// ============================================================
+//  BUILD SHELF
+// ============================================================
+function buildShelf() {
+  const cabinet = document.getElementById('cabinet');
+  const PER_ROW = 25;
+
+  for (let row = 0; row < Math.ceil(CASSETTES.length / PER_ROW); row++) {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'shelf-row';
+
+    const slice = CASSETTES.slice(row * PER_ROW, row * PER_ROW + PER_ROW);
+    slice.forEach(c => rowEl.appendChild(makeSpine(c)));
+    cabinet.appendChild(rowEl);
+  }
+}
+
+function makeSpine(c) {
+  const cat = CATS[c.cat];
+  const el = document.createElement('div');
+  el.className = `cassette-spine cat-${c.cat}`;
+  el.dataset.id = c.id;
+  el.title = `#${String(c.id).padStart(2,'0')} · ${c.label} ${c.sub} — ${cat.label} · fes clic per treure`;
+
+  el.innerHTML = `
+    <div class="spine-inner">
+      <div class="spine-dot" style="background:${cat.color}"></div>
+      <div class="spine-label">${c.label}</div>
+      <div class="spine-num">${String(c.id).padStart(2,'0')}</div>
+    </div>`;
+
+  // Click → extract & show floating cassette card
+  el.addEventListener('click', e => {
+    e.stopPropagation();
+    if (extractedId === c.id) { retractCassette(); return; }
+    extractCassette(c, el);
+  });
+
+  return el;
+}
+
+// ============================================================
+//  DROP ZONE
+// ============================================================
+const win = document.getElementById('cassetteWindow');
+win.addEventListener('dragover', e => { e.preventDefault(); win.classList.add('drag-over'); });
+win.addEventListener('dragleave', () => win.classList.remove('drag-over'));
+win.addEventListener('drop', e => {
+  e.preventDefault();
+  win.classList.remove('drag-over');
+  const id = parseInt(e.dataTransfer.getData('text/plain'));
+  if (id) loadCassette(id);
+});
+
+// ============================================================
+//  LOAD CASSETTE
+// ============================================================
+function loadCassette(id) {
+  const c = CASSETTES.find(x => x.id === id);
+  if (!c || (current && current.id === id)) return;
+
+  consumeCard();
+  if (current) eject(false);
+
+  current = c;
+
+  // Mark spine
+  document.querySelectorAll('.cassette-spine').forEach(el => {
+    el.classList.toggle('in-player', parseInt(el.dataset.id) === id);
+  });
+
+  // Update window UI
+  const cat = CATS[c.cat];
+  document.getElementById('cipName').textContent = c.label;
+  document.getElementById('cipNum').textContent  = `#${String(c.id).padStart(2,'0')}`;
+  document.getElementById('cipLabel').style.setProperty('--cip-color', cat.color);
+
+  const cip = document.getElementById('cip');
+  cip.classList.add('visible', 'inserting');
+  cip.addEventListener('animationend', () => cip.classList.remove('inserting'), { once: true });
+  document.getElementById('dropPrompt').classList.add('hidden');
+
+  // Now playing bar
+  const np = document.getElementById('nowPlaying');
+  np.classList.remove('empty');
+  const dot = document.getElementById('npDot');
+  dot.style.background = cat.color;
+  dot.style.color = cat.color;
+  document.getElementById('npTitle').textContent = `${c.label} ${c.sub}`;
+  document.getElementById('npMeta').textContent  = `Casette #${String(c.id).padStart(2,'0')} · ${cat.label}`; // cat.label ja és en català
+
+  // Hide hint
+  document.getElementById('playerHint').classList.add('hidden');
+
+  // Init audio
+  if (audio) { audio.pause(); audio.src = ''; }
+  audio = new Audio(c.src);
+  audio.volume = document.getElementById('volSlider').value / 100;
+  audio.addEventListener('loadstart', () => document.getElementById('loadingBadge').classList.add('visible'));
+  audio.addEventListener('canplay',   () => document.getElementById('loadingBadge').classList.remove('visible'));
+  audio.addEventListener('timeupdate', refreshTime);
+  audio.addEventListener('ended', () => { stopAudio(); });
+
+  play();
+}
+
+// ============================================================
+//  PLAYBACK
+// ============================================================
+function play() {
+  if (!audio || !current) return;
+  audio.play().then(() => {
+    playing = true;
+    document.getElementById('cipBody').classList.add('playing');
+    document.getElementById('btnPlay').classList.add('active');
+    document.getElementById('topLed').classList.add('on');
+    startVU();
+  }).catch(() => {});
+}
+
+function pause() {
+  if (!audio) return;
+  audio.pause();
+  playing = false;
+  document.getElementById('cipBody').classList.remove('playing');
+  document.getElementById('btnPlay').classList.remove('active');
+  // label is in HTML, no textContent needed
+  document.getElementById('topLed').classList.remove('on');
+  stopVU();
+}
+
+function stopAudio() {
+  if (!audio) return;
+  audio.pause();
+  audio.currentTime = 0;
+  playing = false;
+  document.getElementById('cipBody').classList.remove('playing');
+  document.getElementById('btnPlay').classList.remove('active');
+  // label is in HTML, no textContent needed
+  document.getElementById('topLed').classList.remove('on');
+  stopVU();
+  clearVU();
+}
+
+function eject(resetHint = true) {
+  stopAudio();
+  if (current) {
+    document.querySelectorAll('.cassette-spine').forEach(el => el.classList.remove('in-player'));
+    current = null;
+  }
+  document.getElementById('cip').classList.remove('visible');
+  document.getElementById('dropPrompt').classList.remove('hidden');
+  document.getElementById('nowPlaying').classList.add('empty');
+  document.getElementById('npTitle').textContent = 'Sense casette';
+  document.getElementById('npMeta').textContent  = '—';
+  document.getElementById('npDot').style.background = '#333';
+  document.getElementById('npDot').style.color = '#333';
+  document.getElementById('loadingBadge').classList.remove('visible');
+  if (resetHint) document.getElementById('playerHint').classList.remove('hidden');
+}
+
+function refreshTime() {
+  // LED display removed; no-op
+}
+
+// ============================================================
+//  BUTTON EVENTS
+// ============================================================
+document.getElementById('btnPlay').addEventListener('click', () => {
+  if (!current) return;
+  playing ? pause() : play();
+});
+document.getElementById('btnStop').addEventListener('click', stopAudio);
+document.getElementById('btnRew').addEventListener('click', () => {
+  if (audio) { audio.currentTime = Math.max(0, audio.currentTime - 10); refreshTime(); }
+});
+document.getElementById('btnFwd').addEventListener('click', () => {
+  if (audio) { audio.currentTime = Math.min(audio.duration || 9999, audio.currentTime + 10); refreshTime(); }
+});
+document.getElementById('btnEject').addEventListener('click', () => eject(true));
+document.getElementById('volSlider').addEventListener('input', e => {
+  if (audio) audio.volume = e.target.value / 100;
+});
+
+// ============================================================
+//  VU METERS — Analog needle
+// ============================================================
+function setNeedle(id, level) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  // level 0→1 maps to rotation -62°→+62°
+  const angle = -62 + level * 124;
+  el.setAttribute('transform', `rotate(${angle}, 60, 80)`);
+}
+
+function tickVU() {
+  if (!playing) return;
+  setNeedle('vuNeedleL', 0.1 + Math.random() * 0.82);
+  setNeedle('vuNeedleR', 0.1 + Math.random() * 0.82);
+}
+
+function startVU() {
+  stopVU();
+  vuTimer = setInterval(tickVU, 110);
+}
+function stopVU()  { clearInterval(vuTimer); vuTimer = null; }
+function clearVU() { setNeedle('vuNeedleL', 0); setNeedle('vuNeedleR', 0); }
+
+// ============================================================
+//  INIT
+// ============================================================
+buildShelf();
+</script>
+</body>
+</html>
